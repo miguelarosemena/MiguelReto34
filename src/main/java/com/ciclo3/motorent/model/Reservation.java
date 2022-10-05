@@ -23,13 +23,9 @@ public class Reservation implements Serializable{
     @Column(unique=false,nullable=false)
     private Date startDate;
     @Column(unique=false,nullable=false)
-    private Date endDate;
+    private Date devolutionDate;
     private String status="Created";
 
-    @ManyToOne
-    @JoinColumn(name = "idCategory")
-    @JsonIgnoreProperties("reservation")
-    private Category category;
     
     @ManyToOne
     @JoinColumn(name = "idMoto")
@@ -42,9 +38,9 @@ public class Reservation implements Serializable{
     @JsonIgnoreProperties({"messages","reservation"})
     private Client client;
     
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="reservation")
+    @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
     @JsonIgnoreProperties("reservation")
-    public List<Score>score;
+    public Score score;
 
 
 
@@ -64,13 +60,15 @@ public class Reservation implements Serializable{
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getDevolutionDate() {
+        return devolutionDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setDevolutionDate(Date devolutionDate) {
+        this.devolutionDate = devolutionDate;
     }
+
+    
 
     public String getStatus() {
         return status;
@@ -78,14 +76,6 @@ public class Reservation implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public Motorbike getMotorbike() {
@@ -104,11 +94,11 @@ public class Reservation implements Serializable{
         this.client = client;
     }
 
-    public List<Score> getScore() {
+    public Score getScore() {
         return score;
     }
 
-    public void setScore(List<Score> score) {
+    public void setScore(Score score) {
         this.score = score;
     }
 

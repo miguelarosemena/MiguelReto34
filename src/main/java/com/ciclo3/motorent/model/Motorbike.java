@@ -17,18 +17,18 @@ public class Motorbike implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique=true,nullable=false)
-    private Integer idMoto;
+    private Integer id;
     @Column(length=45,unique=false,nullable=false)
     private String brand;
     @Column(length=4,unique=false,nullable=false)
-    private Integer model;
+    private Integer year;
     @Column(length=45,unique=false,nullable=false)
     private String name;
     @Column(length=250,unique=false,nullable=false)
     private String description;
     
     @ManyToOne
-    @JoinColumn(name = "idCategory")
+    @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("motorbike")
     private Category category;
     
@@ -40,12 +40,12 @@ public class Motorbike implements Serializable {
     @JsonIgnoreProperties({"motorbike","messages"})
     public List<Reservation> reservation;
 
-    public Integer getIdMoto() {
-        return idMoto;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdMoto(Integer idMoto) {
-        this.idMoto = idMoto;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getBrand() {
@@ -56,14 +56,13 @@ public class Motorbike implements Serializable {
         this.brand = brand;
     }
 
-    public Integer getModel() {
-        return model;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setModel(Integer model) {
-        this.model = model;
+    public void setYear(Integer year) {
+        this.year = year;
     }
-
 
     public String getName() {
         return name;
@@ -104,6 +103,7 @@ public class Motorbike implements Serializable {
     public void setReservation(List<Reservation> reservation) {
         this.reservation = reservation;
     }
-    
-    
+
+
+   
 }

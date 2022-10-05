@@ -22,14 +22,14 @@ public class MotorbikeService {
     public List<Motorbike> getAll(){
         return MotorbikeRepository.getAll();
     }
-    public Optional<Motorbike> getMotorbike(int idMoto){
-        return MotorbikeRepository.getMotorbike(idMoto);
+    public Optional<Motorbike> getMotorbike(int id){
+        return MotorbikeRepository.getMotorbike(id);
     }
     public Motorbike save(Motorbike p){
-        if(p.getIdMoto()==null){
+        if(p.getId()==null){
             return MotorbikeRepository.save(p);
         }else{
-            Optional<Motorbike> e = MotorbikeRepository.getMotorbike(p.getIdMoto());
+            Optional<Motorbike> e = MotorbikeRepository.getMotorbike(p.getId());
             if(e.isPresent()){
                 return p;
             }else{
@@ -38,14 +38,14 @@ public class MotorbikeService {
         }
     }
     public Motorbike update(Motorbike p){
-        if(p.getIdMoto()!=null){
-            Optional<Motorbike> q = MotorbikeRepository.getMotorbike(p.getIdMoto());
+        if(p.getId()!=null){
+            Optional<Motorbike> q = MotorbikeRepository.getMotorbike(p.getId());
             if(q.isPresent()){
                 if(p.getBrand()!=null){
                     q.get().setName(p.getBrand());
                 }
-                if(p.getModel()!=null){
-                    q.get().setModel(p.getModel());
+                if(p.getYear()!=null){
+                    q.get().setYear(p.getYear());
                 }
                 if(p.getName()!=null){
                     q.get().setName(p.getName());
@@ -63,9 +63,9 @@ public class MotorbikeService {
             return p;
         }
     }
-    public boolean delete(int idMoto){
+    public boolean delete(int id){
         boolean flag=false;
-        Optional<Motorbike>p= MotorbikeRepository.getMotorbike(idMoto);
+        Optional<Motorbike>p= MotorbikeRepository.getMotorbike(id);
         if(p.isPresent()){
             MotorbikeRepository.delete(p.get());
             flag=true;

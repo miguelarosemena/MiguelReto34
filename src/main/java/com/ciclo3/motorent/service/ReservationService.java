@@ -46,8 +46,8 @@ public class ReservationService {
                 if(p.getStartDate()!=null){
                     q.get().setStartDate(p.getStartDate());
                 }
-                if(p.getEndDate()!=null){
-                    q.get().setEndDate(p.getEndDate());
+                if(p.getDevolutionDate()!=null){
+                    q.get().setDevolutionDate(p.getDevolutionDate());
                 }
                 reservationRepository.save(q.get());
                 return q.get();

@@ -23,8 +23,7 @@ public class Score {
     @Column(length=1,unique=false,nullable=false)
     private Integer scoreGrade;
     
-    @ManyToOne
-    @JoinColumn(name = "idReservation")
+    @OneToOne
     @JsonIgnoreProperties("score")
     private Reservation reservation;
 
